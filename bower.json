@@ -1,0 +1,28 @@
+{
+  "name": "plastic-map-info",
+  "version": "0.0.2",
+  "description": "A more flexible infowindow for google maps",
+  "main": "plastic-map-info.html",
+  "keywords": [
+    "polymer",
+    "polymer 2.0",
+    "google-map",
+    "infowindow",
+    "web-components"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^2.0.0",
+    "paper-icon-button": "PolymerElements/paper-icon-button#^2.0.0",
+    "resize-aware": "^1.9.1",
+    "paper-styles": "PolymerElements/paper-styles#^2.0.0",
+    "iron-iconset-svg": "PolymerElements/iron-iconset-svg#^2.0.0"
+  },
+  "devDependencies": {
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",
+    "web-component-tester": "Polymer/web-component-tester#^6.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0"
+  },
+  "resolutions": {
+    "polymer": "^2.0.0"
+  }
+}
