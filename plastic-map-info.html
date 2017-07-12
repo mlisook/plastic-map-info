@@ -13,7 +13,7 @@
         display: inline-block;
       }
 
-      .infocard {
+      .paper-material {
         position: absolute;
         z-index: 999;
         max-width: 80%;
@@ -26,8 +26,37 @@
         border-radius: 4px;
         opacity: 0;
         display: none;
-        @apply --paper-map-info-mixin;
+        @apply --plastic-map-info-mixin;
       }
+
+      .shadow-2dp {
+        @apply --shadow-elevation-2dp;
+      }
+
+      .shadow-3dp {
+        @apply --shadow-elevation-3dp;
+      }
+
+      .shadow-4dp {
+        @apply --shadow-elevation-4dp;
+      }
+
+      .shadow-6dp {
+        @apply --shadow-elevation-6dp;
+      }
+
+      .shadow-8dp {
+        @apply --shadow-elevation-8dp;
+      }
+
+      .shadow-12dp {
+        @apply --shadow-elevation-12dp;
+      }
+
+      .shadow-16dp {
+        @apply --shadow-elevation-16dp;
+      }
+
 
       .infocard-beak {
         position: absolute;
@@ -39,12 +68,12 @@
         fill: blue;
         stroke: black;
         stroke-width: 1;
-        @apply --paper-map-info-beak-mixin
+        @apply --plastic-map-info-beak-mixin
       }
 
       div.card-content {
         overflow: hidden;
-        @apply --paper-map-info-content
+        @apply --plastic-map-info-content
       }
 
       iron-icon.closeicon {
@@ -63,8 +92,8 @@
     <div id="custombeak" class="infocard-beak">
       <slot id="custombeakcontent" name="info-beak"></slot>
     </div>
-    <div id="infocarddiv" class="infocard paper-material" elevation="[[elevation]]">
-      <resize-aware>
+    <div id="infocarddiv" class="paper-material shadow-12dp" elevation="[[elevation]]">
+      <resize-aware id="raware">
         <div class="card-content">
           <slot id="cardcontent"></slot>
         </div>
@@ -82,7 +111,7 @@
      * @polymer
      * @demo demo/index.html
      */
-    class PlasticMapInfo extends Polymer.Element {
+    class PlasticMapInfo extends Polymer.GestureEventListeners(Polymer.Element) {
       static get is() {
         return 'plastic-map-info';
       }
@@ -92,6 +121,10 @@
           /**
            * Elevation of the paper material background (0 - 5)
            */
+          //
+          // TODO apply shadow-dpxx style based on elevation
+          //      or eliminate this property and use a mixin instead
+          //
           elevation: {
             type: Number,
             notify: true,
@@ -371,7 +404,7 @@
         }));
 
         if (!this._watchingSize) {
-          this.$$('resize-aware').addEventListener('element-resize', () => {
+          this.$.raware.addEventListener('element-resize', () => {
             this._contentChanged();
           });
         }
@@ -435,6 +468,7 @@
        * initialize component
        */
       ready() {
+        super.ready();
         if (this.map) {
           this._overlay = new google.maps.OverlayView();
           this._overlay.draw = function () {};
@@ -505,7 +539,9 @@
           //      see:  https://www.polymer-project.org/2.0/docs/upgrade
           //
           // if ((Polymer.dom(this.$.custombeakcontent)).getDistributedNodes().length > 0) {
-          if (this.$.custombeakcontent.assignedNodes({flatten: true}).length > 0) {
+          if (this.$.custombeakcontent.assignedNodes({
+              flatten: true
+            }).length > 0) {
             this._bk = this.$.custombeak;
             this._nbk = this.$.stdbeak;
             this._isCustomBeak = true;
