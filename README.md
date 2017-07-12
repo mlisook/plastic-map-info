@@ -47,14 +47,14 @@ Normal Google Map infowindow behavior is supported, including moving the window 
         <google-map-marker click-events latitude="[[s.lat]]" longitude="[[s.lng]]" on-google-map-marker-click="markerClick">
         </google-map-marker>
       </template>
-      <paper-map-info id="myinfocard" fade-in>
+      <plastic-map-info id="myinfocard" fade-in>
         <div class="layout vertical">
           <div style="width:100%; background-color: blue; font-weight: bold; color: white; padding: 5px;">[[selectedSalon.name]]</div>
           <div class="layout vertical" style="border: 2px solid blue; padding: 5px;">
             <paper-button raised on-tap="booking">Book an Appointment</paper-button>
           </div>
         </div>
-      </paper-map-info>
+      </plastic-map-info>
     </google-map>
 ```
 ```javascript
@@ -65,22 +65,11 @@ Normal Google Map infowindow behavior is supported, including moving the window 
 ```
 The element is meant to be fully composable so you can have anything inside, even neon-animated-pages, streaming data charts, etc., if you want.
 
-## Referencing Requirements
-
-The element is written in typescript and requires `polymer-ts`, which should come right after your `polymer` reference.
-```html
-<script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
-<link rel-"import" href="bower_components/polymer/polymer.html" />
-<link rel-"import" href="bower_components/polymer-ts/polymer-ts.html" />
-<link rel-"import" href="bower_components/paper-map-info/paper-map-info.html" />
-```
-Of course, using the path to bower_components that applies to your project.
-
 ## Styling
 
-You can customize the paper-material background using the `--paper-map-info-mixin`.  You can customize the style of the beak (pointer from the card to the pin) with `--paper-map-info-beak-mixin`. Or even replace the default beak entirely with:
+You can customize the paper-material background using the `--plastic-map-info-mixin`.  You can customize the style of the beak (pointer from the card to the pin) with `--plastic-map-info-beak-mixin`. Or even replace the default beak entirely with:
 ```html
-    <div class="paper-map-info-beak">
+    <div slot="info-beak">
       ... your image or svg here ...
     <div>
 ```
