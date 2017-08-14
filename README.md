@@ -7,10 +7,10 @@ or a google map instantiated by the Google Maps Javascript API at the position o
 
 This element is a native Polymer 2.0 class based element.
 
-As of this writing, `google-map` had not been released at the 2.0 level.  You can use the 2.0-Preview branch of `google-map`.  You can also use this element with a Google Map built directly with the Google Maps Javascript API.
+You can use this element with the 2.0 or higher release of `google-map`.  You can also use this element with a Google Map built directly with the Google Maps Javascript API.
 
 ### Polymer 1.0 Version
-A prior version of this element for Polymer 1.0, `paper-map-info`, is still available.  You may install that version
+A prior version of this element for Polymer 1.x, `paper-map-info`, is still available.  You may install that version
 with:
 
 `bower install --save paper-map-info`
@@ -19,11 +19,11 @@ Note that the 1.0 version was "paper" and the 2.0 is "plastic".
 
 ## Live Demos
 
-At ([the Github Project Page](https://mlisook.github.io/paper-map-info)) you will find multiple live demos and the source code behind them.
+At [the Github Project Page](https://mlisook.github.io/plastic-map-info) you will find multiple live demos and the source code behind them.
 
 ## WHY!?
 
-In its current implementation (as of June 2017) the native infowindow does not support event handlers, so interactive infowindows are out.  For example:
+In its current implementation (as of August 2017) the native infowindow does not support event handlers, so interactive infowindows are out.  For example:
 ```html
     <google-map-marker ...>
       <paper-button on-tap="makeReservation">Reserve</paper-button>
@@ -33,6 +33,8 @@ In its current implementation (as of June 2017) the native infowindow does not s
 This will _not work_ because all bindings are lost when the infowindow is built. There is an issue open ([#288](https://github.com/GoogleWebComponents/google-map/issues/288)), it has been open for more than a year, but as of now it is not resolved.
 
 Additionally, the native infowindow does not support the use of CSS style classes under native shadow dom (classes work under shady dom).
+
+These issues have to do with the way native infoWindow works and the way `google-map-marker` has to copy the infoWindow content, effectively moving the marker content from light DOM of the `google-map-marker` to shadow DOM of the `google-map`. This can't really be fixed in `google-map-marker` while continuing to use the native infoWindow and it seems very unlikely the native infoWindow would be modified to support the Polymer element scenario. Therefore, I believe the issue will persist indefinately.
 
 If you don't need event handlers, and will style your elements in the infowindow only with `style="..."` on each tag, _use the native infowindow_.  If you do need events, or CSS style classes, this element may help you.
 
@@ -83,4 +85,4 @@ Install with bower:
 
 ## Issues and Contributions
 
-Please file issues on the github page. Contributions via pull request are certainly welcome.
+Please file issues on the github page. Contributions via pull request are certainly welcome and appreciated.
