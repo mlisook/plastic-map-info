@@ -1,10 +1,37 @@
+<!--
+@license MIT
+-->
+
 <link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="../iron-icon/iron-icon.html" />
 <link rel="import" href="../resize-aware/resize-aware.html" />
 <link rel="import" href="plastic-map-info-icons.html" />
 <link rel="import" href="../paper-styles/shadow.html">
 <link rel="import" href="../paper-styles/element-styles/paper-material-styles.html">
-<link rel="import" href="../shadycss/apply-shim.html">
+
+<!--
+`plastic-map-info` is a Polymer 2.0 element which provides greater flexibility than the native infoWindow
+in `google-map-marker`. Specifically it allows the use of event handlers and CSS classes on the contents
+of the infoWindow.
+
+## Live Demos with Sample Code
+
+At [the Github Project Page](https://mlisook.github.io/plastic-map-info) you will find multiple live demos and the source code behind them.
+
+## Style Mixins
+
+The following mixins are available for styling:
+
+Custom property                | Description                                 | Default
+-------------------------------|---------------------------------------------|----------
+`--plastic-map-info-mixin`     | Mixin applied to the paper-material backing | `{}`
+`--plastic-map-info-beak-mixin | Mixin applied to the beak                   | `{stroke: black; fill: blue;}`
+`--plastic-map-info-content`   | Mixin applied to the content container      | `{}`
+
+
+@element plastic-map-info
+@demo demo/index.html
+-->
 
 <dom-module id="plastic-map-info">
   <template>
@@ -13,50 +40,22 @@
         display: inline-block;
       }
 
-      .paper-material {
+      .info-card-backing {
         position: absolute;
-        z-index: 999;
+        z-index: 99;
         max-width: 80%;
         max-height: 75%;
         top: 0;
         left: 0;
-        background: white;
+        background-color: white;
         box-sizing: border-box;
         padding: 12px 28px 12px 12px;
         border-radius: 4px;
+        color: black;
         opacity: 0;
         display: none;
         @apply --plastic-map-info-mixin;
       }
-
-      .shadow-2dp {
-        @apply --shadow-elevation-2dp;
-      }
-
-      .shadow-3dp {
-        @apply --shadow-elevation-3dp;
-      }
-
-      .shadow-4dp {
-        @apply --shadow-elevation-4dp;
-      }
-
-      .shadow-6dp {
-        @apply --shadow-elevation-6dp;
-      }
-
-      .shadow-8dp {
-        @apply --shadow-elevation-8dp;
-      }
-
-      .shadow-12dp {
-        @apply --shadow-elevation-12dp;
-      }
-
-      .shadow-16dp {
-        @apply --shadow-elevation-16dp;
-      }
-
 
       .infocard-beak {
         position: absolute;
@@ -92,7 +91,7 @@
     <div id="custombeak" class="infocard-beak">
       <slot id="custombeakcontent" name="info-beak"></slot>
     </div>
-    <div id="infocarddiv" class="paper-material shadow-12dp" elevation="[[elevation]]">
+    <div id="infocarddiv" class="paper-material info-card-backing" elevation$="[[elevation]]">
       <resize-aware id="raware">
         <div class="card-content">
           <slot id="cardcontent"></slot>
@@ -121,14 +120,11 @@
           /**
            * Elevation of the paper material background (0 - 5)
            */
-          //
-          // TODO apply shadow-dpxx style based on elevation
-          //      or eliminate this property and use a mixin instead
-          //
           elevation: {
             type: Number,
             notify: true,
-            value: 4
+            value: 4,
+            reflectToAttribute: true
           },
 
           /**
