@@ -1,14 +1,17 @@
 {
   "name": "plastic-map-info",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A more flexible infowindow for google maps",
   "main": "plastic-map-info.html",
+  "license": "MIT",
   "keywords": [
     "polymer",
     "polymer 2.0",
     "google-map",
     "infowindow",
-    "web-components"
+    "web-components",
+    "material",
+    "paper"
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#^2.0.0",

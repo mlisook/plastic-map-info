@@ -69,13 +69,21 @@ The element is meant to be fully composable so you can have anything inside, eve
 
 ## Styling
 
-You can customize the paper-material background using the `--plastic-map-info-mixin`.  You can customize the style of the beak (pointer from the card to the pin) with `--plastic-map-info-beak-mixin`. Or even replace the default beak entirely with:
+You can style the content of the infoWindow with CSS classes or style="...".
+
+The paper-material background can be customized by using the `--plastic-map-info-mixin`.  
+
+The style of the beak (pointer from the card to the pin) can be modified with the `--plastic-map-info-beak-mixin`.
+
+The inner container which holds your infoWindow content can be modified with the `--plastic-map-info-content` mixin.
+
+You can replace the default beak entirely by providing your own image or svg in a `div` marked `slot="info-beak"` inside the content of the paper-map-info:
 ```html
     <div slot="info-beak">
       ... your image or svg here ...
     <div>
 ```
-inside the content of the paper-map-info.
+The [Demo Page](https://mlisook.github.io/plastic-map-info) includes examples of each of these styling options.
 
 ## Install in Your Project
 
