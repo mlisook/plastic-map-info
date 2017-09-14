@@ -333,13 +333,16 @@ Custom property                | Description                                 | D
         }
       }
 
+
       /**
        * get marker size
        */
       _getMarkerSize() {
         if (this._marker && this._marker.getIcon()) {
           let mIcon = this._marker.getIcon();
-          this._dim.marker.y = mIcon.anchor.y;
+          var img = new Image();
+          img.addEventListener('load', this._setCustomIconHeight.bind(this));
+          img.src = mIcon;
           this._dim.marker.x = 0;
         } else {
           this._dim.marker = {
@@ -347,6 +350,10 @@ Custom property                | Description                                 | D
             y: 42
           }; // height of standard pin
         }
+      }
+
+      _setCustomIconHeight(e) {
+        this._dim.marker.y = event.target.naturalHeight;
       }
 
       /**
