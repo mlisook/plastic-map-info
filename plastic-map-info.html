@@ -270,9 +270,7 @@ Custom property                | Description                                 | D
         if (this.isShowing) {
           this._getInfowindowSize();
           let placement = this._setInfowindowPosition();
-          if (!this._placementInBounds(placement)) {
-            this._panToShowInfowindow(placement);
-          }
+          // do not do _panToShowInfowindow - see issue #8
         }
       }
 
@@ -395,6 +393,12 @@ Custom property                | Description                                 | D
         }));
         this._mapListeners.push(google.maps.event.addListener(this._marker, 'drag', (e) => {
           if (this.isShowing) {
+            this._setInfowindowPosition();
+          }
+        }));
+        this._mapListeners.push(google.maps.event.addListener(this.map, 'idle', (e) => {
+          if (this.isShowing) {
+            console.log('idle event');
             this._setInfowindowPosition();
           }
         }));

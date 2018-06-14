@@ -1,6 +1,6 @@
 {
   "name": "plastic-map-info",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A more flexible infowindow for google maps",
   "main": "plastic-map-info.html",
   "license": "MIT",
