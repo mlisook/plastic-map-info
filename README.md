@@ -1,7 +1,7 @@
 # \<plastic-map-info\>
 
 A fully composable element that displays a paper-material backed infowindow-like card on a `<google-map>` element,
-or a google map instantiated by the Google Maps Javascript API at the position of a map marker.
+or a google map instantiated by the Google Maps Javascript API, at the position of a map marker.
 
 ## Polymer 2.0 Native
 
@@ -43,6 +43,7 @@ If you don't need event handlers, and will style your elements in the infowindow
 Normal Google Map infowindow behavior is supported, including moving the window as the user pans the map, changes zoom, or drags the marker. The behavior where the map pans automatically to allow the infowindow to be displayed when the clicked marker was too close to an edge is also supported. In addition, since dynamic content is allowed, if the size of the content changes, the position of the window will adjust accordingly.
 
 ## Sample Usage
+### Example Using the google-map Element
 ```html
     <google-map latitude="40.7555" longitude="-73.985" on-google-map-ready="mapReady" fit-to-markers>
       <template is="dom-repeat" items="[[salons]]" as="s">
@@ -60,12 +61,72 @@ Normal Google Map infowindow behavior is supported, including moving the window 
     </google-map>
 ```
 ```javascript
-    markerClick: function(e) {
+    markerClick(e) {
       this.selectedSalon = e.model.get('s');
       this.$.myinfocard.showInfoWindow(e.srcElement.marker);
     }
 ```
-The element is meant to be fully composable so you can have anything inside, even neon-animated-pages, streaming data charts, etc., if you want.
+### Example Using Google Map Javascript API 
+This sample does not use the `google-map` element. It just instantiates a Google Map via the Javascript API.
+
+```html
+  <iron-jsonp-library library-url="[[_gmapApiUrl]]" notify-event="map-api-load" library-loaded="{{_ijplLoaded}}" on-map-api-load="_mapsApiLoaded"></iron-jsonp-library>
+    
+  <plastic-aspect-ratio style="width:100%; max-width:640px; min-width:300px;" aspect-height="3" aspect-width="4">
+    <div id="mapcontainerdiv">
+    </div>
+    <plastic-map-info id="infowin" fade-in map="[[_theMap]]" elevation="4">
+      <span class="evtTitle"><a href="[[_selectedLocation.link]]" target="_blank">[[_selectedLocation.title]]</a></span>
+      <br>
+      <span class="evtDates">[[_selectedLocation.dates]]</span>
+      <br>
+      <span class="evtCircuit"><b>Parking Loc: </b>[[_selectedLocation.parkingLocation]]</span>
+      <br>
+      <span class="evtCircuit"><a href="[[_selectedLocation.circuitLink]]" target="_blank">[[_selectedLocation.circuitName]]</a></span>
+    </plastic-map-info>
+  </plastic-aspect-ratio>    
+```
+```javascript
+_mapsApiLoaded(e) {
+  this._theMap = new google.maps.Map(this.$.mapcontainerdiv, {
+    zoom: 4,
+    center: {
+      lat: 43.923,
+      lng: -121.3465
+    }
+  });
+}
+addMarker(loc) {
+  let m = new google.maps.Marker({
+    position: loc.latLng,
+    title: loc.title,
+    map: this._theMap
+  });
+  this._locationMarkers.push(m); // keep marker refs so they can be removed later
+  this._addMarkerListener(m, loc);
+}
+/**
+ * add a click event listener, capturing the marker and location
+ */
+_addMarkerListener(marker, location) {
+  google.maps.event.addListener(marker, 'click', (e) => {
+    this._markerClick(marker, location, e);
+  });
+}
+/**
+ * Handle marker click
+ * @param {marker} marker - google maps marker
+ * @param {object} location - location object
+ * @param {object} e - click event data
+ */
+_markerClick(marker, location, e) {
+  this._selectedLocation = location;
+  this.$.infowin.showInfoWindow(marker);
+}
+```
+
+### Composable
+The element is meant to be fully composable so you can have anything inside, even iron-pages, streaming data charts, etc., if you want.
 
 ## Styling
 
