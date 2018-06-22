@@ -1,0 +1,18 @@
+{
+  "name": "bcap-test",
+  "version": "1.0.0",
+  "description": "Test browser-capabilities in browser",
+  "main": "index.js",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "serve": "node node_modules/vp-static-server/bin/server -p 8797"
+  },
+  "dependencies": {
+    "browser-capabilities": "^1.1.0",
+    "clientside-require": "^4.6.1"
+  },
+  "devDependencies": {
+    "vp-static-server": "^1.0.2"
+  }
+}
