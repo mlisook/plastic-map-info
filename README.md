@@ -3,11 +3,22 @@
 A fully composable element that displays a paper-material backed infowindow-like card on a `<google-map>` element,
 or a google map instantiated by the Google Maps Javascript API, at the position of a map marker.
 
-## Polymer 2.0 Native
+## Versions and Installation
 
-This element is a native Polymer 2.0 class based element.
+### For Polymer 2.x
+
+A native Polymer 2.0 class based element is available for Polymer 2.x project.
 
 You can use this element with the 2.0 or higher release of `google-map`.  You can also use this element with a Google Map built directly with the Google Maps Javascript API.
+
+#### Install for Polymer 2.x 
+`bower install --save plastic-map-info^0.0.8`
+
+### For Polymer 3.x
+
+A native module based element is available for Polymer 3.x projects.
+#### Install for Polymer 3.x 
+`npm install --save plastic-map-info^1.0.0`
 
 ### Polymer 1.0 Version
 A prior version of this element for Polymer 1.x, `paper-map-info`, is still available.  You may install that version
