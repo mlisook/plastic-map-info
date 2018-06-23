@@ -7,8 +7,9 @@ or a google map instantiated by the Google Maps Javascript API, at the position 
 
 - [plastic-map-info](#plastic-map-info)
     - [Versions and Installation](#versions-and-installation)
-        - [Polymer 3.0 and Polymer 2.0](#polymer-30-and-polymer-20)
-        - [Polymer 1.0 Version](#polymer-10-version)
+        - [Polymer 3.0](#polymer-30)
+        - [Polymer 2.x](#polymer-2x)
+        - [Polymer 1.x](#polymer-1x)
     - [Live Demos](#live-demos)
     - [WHY!?](#why)
     - [Normal Infowindow Functionality Supported](#normal-infowindow-functionality-supported)
@@ -23,20 +24,23 @@ or a google map instantiated by the Google Maps Javascript API, at the position 
 
 <!-- /TOC -->
 ## Versions and Installation
-### Polymer 3.0 and Polymer 2.0
+### Polymer 3.0 
 
-This package contains both a Polymer 3.0 element and a Polymer 2.0 element.  Use bower to install for Polymer 2.0 projects.  Use npm or yarn to install for Polymer 3.0 projects.
+To use this element in a Polymer 3.0 project, use npm or yarn to install.
 ```
 // For Polymer 3 use npm or yarn
 npm i --save plastic-map-info
 // or 
 yarn add plastic-map-info
-
+```
+### Polymer 2.x
+To use this element in a Polymer 2.x project, use bower to install.
+```
 // for Polymer 2 use bower 
-bower install --save plastic-map-info
+bower install --save plastic-map-info^0.0.8
 ```
 
-### Polymer 1.0 Version
+### Polymer 1.x
 A prior version of this element for Polymer 1.x, `paper-map-info`, is still available.  You may install that version
 with:
 
