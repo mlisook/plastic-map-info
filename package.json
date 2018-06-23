@@ -11,7 +11,11 @@
     "paper"
   ],
   "name": "plastic-map-info",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mlisook/plastic-map-info.git"
+  },
   "resolutions": {
     "inherits": "2.0.3",
     "samsam": "1.1.3",
