@@ -1,9 +1,13 @@
 {
   "name": "plastic-map-info",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A more flexible infowindow for google maps",
   "main": "plastic-map-info.html",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mlisook/plastic-map-info.git"
+  },
   "keywords": [
     "polymer",
     "polymer 2.0",
