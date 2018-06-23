@@ -30,7 +30,7 @@ Custom property                | Description                                 | D
 
 
 @element plastic-map-info
-@demo demo/index.html
+
 -->
 
 <dom-module id="plastic-map-info">
@@ -398,7 +398,6 @@ Custom property                | Description                                 | D
         }));
         this._mapListeners.push(google.maps.event.addListener(this.map, 'idle', (e) => {
           if (this.isShowing) {
-            console.log('idle event');
             this._setInfowindowPosition();
           }
         }));
