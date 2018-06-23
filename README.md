@@ -1,13 +1,40 @@
-# \<plastic-map-info\>
+# plastic-map-info
 
-A fully composable element that displays a paper-material backed infowindow-like card on a `<google-map>` element,
+A fully composable element that displays a paper-material backed infowindow-like card on a `<google-map>` element
 or a google map instantiated by the Google Maps Javascript API, at the position of a map marker.
 
-## Polymer 2.0 Native
+<!-- TOC -->
 
-This element is a native Polymer 2.0 class based element.
+- [plastic-map-info](#plastic-map-info)
+    - [Versions and Installation](#versions-and-installation)
+        - [Polymer 3.0 and Polymer 2.0](#polymer-30-and-polymer-20)
+        - [Polymer 1.0 Version](#polymer-10-version)
+    - [Live Demos](#live-demos)
+    - [WHY!?](#why)
+    - [Normal Infowindow Functionality Supported](#normal-infowindow-functionality-supported)
+    - [Sample Usage](#sample-usage)
+        - [Example Using the google-map Element](#example-using-the-google-map-element)
+        - [Example Using Google Map Javascript API](#example-using-google-map-javascript-api)
+        - [Other Google Map elements](#other-google-map-elements)
+        - [Composable](#composable)
+    - [Styling](#styling)
+    - [Issues and Contributions](#issues-and-contributions)
+    - [License](#license)
 
-You can use this element with the 2.0 or higher release of `google-map`.  You can also use this element with a Google Map built directly with the Google Maps Javascript API.
+<!-- /TOC -->
+## Versions and Installation
+### Polymer 3.0 and Polymer 2.0
+
+This package contains both a Polymer 3.0 element and a Polymer 2.0 element.  Use bower to install for Polymer 2.0 projects.  Use npm or yarn to install for Polymer 3.0 projects.
+```
+// For Polymer 3 use npm or yarn
+npm i --save plastic-map-info
+// or 
+yarn add plastic-map-info
+
+// for Polymer 2 use bower 
+bower install --save plastic-map-info
+```
 
 ### Polymer 1.0 Version
 A prior version of this element for Polymer 1.x, `paper-map-info`, is still available.  You may install that version
@@ -15,7 +42,7 @@ with:
 
 `bower install --save paper-map-info`
 
-Note that the 1.0 version was "paper" and the 2.0 is "plastic".
+Note that the 1.0 version was "paper" and the 2.0/3.0 version is "plastic".
 
 ## Live Demos
 
@@ -23,20 +50,20 @@ At [the Github Project Page](https://mlisook.github.io/plastic-map-info) you wil
 
 ## WHY!?
 
-In its current implementation (as of August 2017) the native infowindow does not support event handlers, so interactive infowindows are out.  For example:
+In its current implementation (as of June 2018) the native infowindow does not support event handlers, so interactive infowindows are out.  For example, something as simple as this:
 ```html
     <google-map-marker ...>
       <paper-button on-tap="makeReservation">Reserve</paper-button>
       ...
     </google-map-marker>
 ```
-This will _not work_ because all bindings are lost when the infowindow is built. There is an issue open ([#288](https://github.com/GoogleWebComponents/google-map/issues/288)), it has been open for more than a year, but as of now it is not resolved.
+This will _not work_ because all bindings are lost when the infowindow is built. There is an issue open ([#288](https://github.com/GoogleWebComponents/google-map/issues/288)), it has been open for more than 2 years, but as of now it is not resolved.
 
 Additionally, the native infowindow does not support the use of CSS style classes under native shadow dom (classes work under shady dom).
 
 These issues have to do with the way native infoWindow works and the way `google-map-marker` has to copy the infoWindow content, effectively moving the marker content from light DOM of the `google-map-marker` to shadow DOM of the `google-map`. This can't really be fixed in `google-map-marker` while continuing to use the native infoWindow and it seems very unlikely the native infoWindow would be modified to support the Polymer element scenario. Therefore, I believe the issue will persist indefinately.
 
-If you don't need event handlers, and will style your elements in the infowindow only with `style="..."` on each tag, _use the native infowindow_.  If you do need events, or CSS style classes, this element may help you.
+If you don't need event handlers, and will style your elements in the infowindow only with `style="..."` on each tag, _use the native infowindow_.  If you do need interaction, events, animation or CSS style classes, this element is fully composable.
 
 ## Normal Infowindow Functionality Supported
 
@@ -124,6 +151,8 @@ _markerClick(marker, location, e) {
   this.$.infowin.showInfoWindow(marker);
 }
 ```
+### Other Google Map elements
+This element should also work with other elements that implement the Google Map Javascript API.  If you have difficulty, please file an issue and I'll assist.
 
 ### Composable
 The element is meant to be fully composable so you can have anything inside, even iron-pages, streaming data charts, etc., if you want.
@@ -146,12 +175,11 @@ You can replace the default beak entirely by providing your own image or svg in 
 ```
 The [Demo Page](https://mlisook.github.io/plastic-map-info) includes examples of each of these styling options.
 
-## Install in Your Project
-
-Install with bower:
-
-`bower install --save plastic-map-info`
-
 ## Issues and Contributions
 
-Please file issues on the github page. Contributions via pull request are certainly welcome and appreciated.
+Please file issues on the github page. I make every effort to respond to issues within 24 hours.
+
+Contributions via pull request are certainly welcome and appreciated.
+
+## License
+MIT
